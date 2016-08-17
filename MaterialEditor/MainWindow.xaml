@@ -9,7 +9,7 @@
         Title="MaterialEditor" Height="600	" Width="800">
 	<Grid>
 		<WindowsFormsHost Width="600" HorizontalAlignment="Left">
-			<fk:FocusablePanel x:Name="ViewportPanel" Height="600" Width="600" />
+			<fk:FocusablePanel x:Name="ViewportPanel" Height="600" Width="600" MouseMove="ViewportPanel_MouseMove" MouseDown="ViewportPanel_MouseDown" />
 		</WindowsFormsHost>
 		<ComboBox x:Name="comboBox" Margin="610,10,10,531" SelectedIndex="0" SelectionChanged="comboBox_SelectionChanged">
 			<ComboBoxItem Content="球" HorizontalAlignment="Left" Width="170"/>
@@ -69,20 +69,20 @@
 			<Label x:Name="label4" Content="Specular" HorizontalAlignment="Right" Margin="10,103,0,0" VerticalAlignment="Top" Height="26" Width="55"/>
 			<Label x:Name="label5" Content="Emission" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="26" Width="56"/>
 			<Label x:Name="label6" Content="Shininess" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="26" Width="59"/>
-			<TextBox x:Name="Alpha"		Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5,14,0,0"	TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged"/>
-			<TextBox x:Name="Ambient_R" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5,45,0,0"	TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged"/>
-			<TextBox x:Name="Ambient_G" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="35,45,0,0"	TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged"/>
-			<TextBox x:Name="Ambient_B" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="65,45,0,0"	TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged"/>
-			<TextBox x:Name="Diffuse_R" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5,76,0,0"	TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged"/>
-			<TextBox x:Name="Diffuse_G" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="35,76,0,0"	TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged"/>
-			<TextBox x:Name="Diffuse_B" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="65,76,0,0"	TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged"/>
-			<TextBox x:Name="Specular_R" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5,107,0,0"	TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged"/>
-			<TextBox x:Name="Specular_G" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="35,107,0,0" TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged"/>
-			<TextBox x:Name="Specular_B" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="65,107,0,0" TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged"/>
-			<TextBox x:Name="Emission_R" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5,138,0,0"	TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged"/>
-			<TextBox x:Name="Emission_G" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="35,138,0,0" TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged"/>
-			<TextBox x:Name="Emission_B" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="65,138,0,0" TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged"/>
-			<TextBox x:Name="Shininess" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5,169,0,0"	TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="55" TextChanged="TextChanged"/>
+			<TextBox x:Name="Alpha"		Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5,14,0,0"	TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged" LostFocus="Alpha_LostFocus"/>
+			<TextBox x:Name="Ambient_R" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5,45,0,0"	TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged" LostFocus="Alpha_LostFocus"/>
+			<TextBox x:Name="Ambient_G" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="35,45,0,0"	TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged" LostFocus="Alpha_LostFocus"/>
+			<TextBox x:Name="Ambient_B" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="65,45,0,0"	TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged" LostFocus="Alpha_LostFocus"/>
+			<TextBox x:Name="Diffuse_R" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5,76,0,0"	TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged" LostFocus="Alpha_LostFocus"/>
+			<TextBox x:Name="Diffuse_G" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="35,76,0,0"	TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged" LostFocus="Alpha_LostFocus"/>
+			<TextBox x:Name="Diffuse_B" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="65,76,0,0"	TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged" LostFocus="Alpha_LostFocus"/>
+			<TextBox x:Name="Specular_R" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5,107,0,0"	TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged" LostFocus="Alpha_LostFocus"/>
+			<TextBox x:Name="Specular_G" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="35,107,0,0" TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged" LostFocus="Alpha_LostFocus"/>
+			<TextBox x:Name="Specular_B" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="65,107,0,0" TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged" LostFocus="Alpha_LostFocus"/>
+			<TextBox x:Name="Emission_R" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5,138,0,0"	TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged" LostFocus="Alpha_LostFocus"/>
+			<TextBox x:Name="Emission_G" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="35,138,0,0" TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged" LostFocus="Alpha_LostFocus"/>
+			<TextBox x:Name="Emission_B" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="65,138,0,0" TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged" LostFocus="Alpha_LostFocus"/>
+			<TextBox x:Name="Shininess" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5,169,0,0"	TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="55" TextChanged="TextChanged" LostFocus="Alpha_LostFocus"/>
 		</Grid>
 
 	</Grid>

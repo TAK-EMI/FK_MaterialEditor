@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using System.Windows.Forms;
 using FK_CLI;
 using FK_FormHelper;
 
@@ -26,7 +27,11 @@ namespace MaterialEditor
 		fk_Model _model = new fk_Model();
 		fk_Solid _shape = new fk_Solid();
 
+		fk_Model _camera = new fk_Model();
+
 		bool eventBlock = false;
+
+		fk_Vector oldPos = new fk_Vector();
 
 		public MainWindow()
 		{
@@ -60,11 +65,10 @@ namespace MaterialEditor
 			scene.EntryModel(this._model);
 
 
-			var camera = new fk_Model();
-			camera.GlTranslate(0.0, 0.0, 50.0);
-			camera.GlFocus(0.0, 0.0, 0.0);
+			this._camera.GlTranslate(0.0, 0.0, 50.0);
+			this._camera.GlFocus(0.0, 0.0, 0.0);
 
-			scene.Camera = camera;
+			scene.Camera = this._camera;
 
 
 			var light = new fk_Light();
@@ -74,6 +78,8 @@ namespace MaterialEditor
 			m_light.GlFocus(-1.0, -1.0, -1.0);
 			m_light.Material = fk_Material.White;
 
+			m_light.SetParent(this._camera);
+
 			scene.EntryModel(m_light);
 
 			return;
@@ -82,6 +88,8 @@ namespace MaterialEditor
 		private void setupGUI()
 		{
 			this.setShape();
+
+			this.eventBlock = true;
 
 			fk_Material mat = this._model.Material;
 
@@ -110,6 +118,8 @@ namespace MaterialEditor
 			this.Emission_B.Text = col.b.ToString("F1");
 
 			this.Shininess.Text = mat.Shininess.ToString("F1");
+
+			this.eventBlock = false;
 
 			return;
 		}
@@ -154,9 +164,9 @@ namespace MaterialEditor
 		private float boundary(float value, float min = 0.0f, float max = 1.0f)
 		{
 			if (value < min)
-				return 0.0f;
+				return min;
 			if (value > max)
-				return 1.0f;
+				return max;
 
 			return value;
 		}
@@ -173,7 +183,7 @@ namespace MaterialEditor
 			}
 			else if (comboValue == "立方体")
 			{
-				this._shape.MakeBlock(10.0, 10.0, 10.0);
+				this._shape.MakeBlock(15.0, 15.0, 15.0);
 				this._model.SmoothMode = false;
 			}
 			else
@@ -189,16 +199,15 @@ namespace MaterialEditor
 			if (this.eventBlock)
 				return;
 
-			TextBox tBox = sender as TextBox;
-			if(tBox.Name != "Shininess")
+			System.Windows.Controls.TextBox tBox = sender as System.Windows.Controls.TextBox;
+
+			float value;
+			if (!float.TryParse(tBox.Text, out value))
 			{
-				float value;
-				if (!float.TryParse(tBox.Text, out value))
-					return;
+				return;
 			}
 
 			this.setupMaterial();
-			this.setupGUI();
 
 			return;
 		}
@@ -389,6 +398,40 @@ namespace MaterialEditor
 		{
 			this.setShape();
 
+			return;
+		}
+
+		private void ViewportPanel_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
+		{
+			if(e.Button == MouseButtons.Left)
+			{
+				fk_Vector oldPos = this.oldPos;
+				fk_Vector newPos = new fk_Vector(e.X, e.Y, 0.0);
+
+				fk_Vector diff = newPos - oldPos;
+
+				this._camera.GlRotateWithVec(0.0, 0.0, 0.0, fk_Axis.Y, -diff.x * 0.01);
+				this._camera.GlRotateWithVec(new fk_Vector(), this._camera.Upvec ^ this._camera.Vec, diff.y * 0.01);
+
+				this.oldPos = newPos;
+			}
+
+			return;
+		}
+
+		private void ViewportPanel_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+		{
+			if(e.Button == MouseButtons.Left)
+			{
+				this.oldPos.Set(e.X, e.Y);
+			}
+
+			return;
+		}
+
+		private void Alpha_LostFocus(object sender, RoutedEventArgs e)
+		{
+			this.setupGUI();
 			return;
 		}
 	}
