@@ -3,10 +3,87 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:fk="clr-namespace:FK_FormHelper;assembly=FK_FormHelper"
         xmlns:local="clr-namespace:MaterialEditor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+        Title="MaterialEditor" Height="600	" Width="800">
+	<Grid>
+		<WindowsFormsHost Width="600" HorizontalAlignment="Left">
+			<fk:FocusablePanel x:Name="ViewportPanel" Height="600" Width="600" />
+		</WindowsFormsHost>
+		<ComboBox x:Name="comboBox" Margin="610,10,10,531" SelectedIndex="0" SelectionChanged="comboBox_SelectionChanged">
+			<ComboBoxItem Content="球" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="立方体" HorizontalAlignment="Left" Width="170"/>
+		</ComboBox>
+		<ComboBox x:Name="comboBox_preset" Margin="610,43,10,0" VerticalAlignment="Top" Height="22" SelectionChanged="comboBox_preset_SelectionChanged">
+			<ComboBoxItem Content="AshGray" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="BambooGreen" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="Blue" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="Brown" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="BurntTitan" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="Coral" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="Cream" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="Cyan" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="DarkBlue" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="DarkGreen" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="DarkPurple" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="DarkRed" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="DarkYellow" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="DimYellow" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="Flesh" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="GlossBlack" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="GrassGreen" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="Gray1" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="Gray2" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="Green" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="HolidaySkyBlue" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="IridescentGreen" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="Ivory" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="LavaRed" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="LightBlue" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="LightCyan" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="LightGreen" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="LightViolet" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="Lilac" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="MatBlack" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="Orange" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="PaleBlue" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="PearWhite" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="Pink" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="Purple" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="Red" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="TrueWhite" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="UltraMarine" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="Violet" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="White" HorizontalAlignment="Left" Width="170"/>
+			<ComboBoxItem Content="Yellow" HorizontalAlignment="Left" Width="170"/>
+		</ComboBox>
+		<Grid HorizontalAlignment="Left" Height="250" Margin="610,80,0,0" VerticalAlignment="Top" Width="172" OpacityMask="Black">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="65*"/>
+				<ColumnDefinition Width="107*"/>
+			</Grid.ColumnDefinitions>
+			<Label x:Name="label1" Content="Alpha" HorizontalAlignment="Right" Margin="10,10,0,0" VerticalAlignment="Top" Height="26" Width="41"/>
+			<Label x:Name="label2" Content="Ambient" HorizontalAlignment="Right" Margin="10,41,0,0" VerticalAlignment="Top" Height="26" Width="55"/>
+			<Label x:Name="label3" Content="Diffuse" HorizontalAlignment="Right" Margin="10,72,0,0" VerticalAlignment="Top" Height="26" Width="47"/>
+			<Label x:Name="label4" Content="Specular" HorizontalAlignment="Right" Margin="10,103,0,0" VerticalAlignment="Top" Height="26" Width="55"/>
+			<Label x:Name="label5" Content="Emission" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="26" Width="56"/>
+			<Label x:Name="label6" Content="Shininess" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="26" Width="59"/>
+			<TextBox x:Name="Alpha"		Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5,14,0,0"	TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged"/>
+			<TextBox x:Name="Ambient_R" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5,45,0,0"	TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged"/>
+			<TextBox x:Name="Ambient_G" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="35,45,0,0"	TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged"/>
+			<TextBox x:Name="Ambient_B" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="65,45,0,0"	TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged"/>
+			<TextBox x:Name="Diffuse_R" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5,76,0,0"	TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged"/>
+			<TextBox x:Name="Diffuse_G" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="35,76,0,0"	TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged"/>
+			<TextBox x:Name="Diffuse_B" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="65,76,0,0"	TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged"/>
+			<TextBox x:Name="Specular_R" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5,107,0,0"	TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged"/>
+			<TextBox x:Name="Specular_G" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="35,107,0,0" TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged"/>
+			<TextBox x:Name="Specular_B" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="65,107,0,0" TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged"/>
+			<TextBox x:Name="Emission_R" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5,138,0,0"	TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged"/>
+			<TextBox x:Name="Emission_G" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="35,138,0,0" TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged"/>
+			<TextBox x:Name="Emission_B" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="65,138,0,0" TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="25" TextChanged="TextChanged"/>
+			<TextBox x:Name="Shininess" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="5,169,0,0"	TextWrapping="Wrap" Text="0.0" VerticalAlignment="Top" Width="55" TextChanged="TextChanged"/>
+		</Grid>
+
+	</Grid>
 </Window>
